@@ -21,7 +21,7 @@ class ChangeShelf extends React.Component {
                 <option key="currentlyReading" value="currentlyReading" selected={book.shelf === this.value}>Currently Reading</option>
                 <option key="wantToRead" value="wantToRead" selected={book.shelf === this.value}>Want to Read</option>
                 <option key="read" value="read" selected={book.shelf === this.value}>Read</option>
-                <option key="none" value="none" selected={book.shelf === this.value}>None</option>
+                <option key="delete" value="delete" selected={book.shelf === this.value}>Delete</option>
             </select>
         )
     }
