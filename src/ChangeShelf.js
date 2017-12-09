@@ -15,7 +15,7 @@ class ChangeShelf extends React.Component {
             <select value={book.shelf} 
             onChange={(e) => { 
                 book.shelf = e.target.value
-                this.props.onUpdateBook(book).bind(this)
+                onUpdateBook(book)
             }}>
                 <option key="none" value="none" disabled>Move to...</option>
                 <option key="currentlyReading" value="currentlyReading" selected={book.shelf === this.value}>Currently Reading</option>
