@@ -19,10 +19,9 @@ class ChangeShelf extends React.Component {
             }}>
                 <option key="none" value="none" disabled>Move to...</option>
                 <option key="currentlyReading" value="currentlyReading" selected={book.shelf === this.value}>Currently Reading</option>
-                <option key="wantToRead" value="wantToRead" selected={book.shelf === this.value}
-                    onClick={(value = this.value) => { this.setShelfState(value).bind(this) }}>Want to Read</option>
-                <option key="read" value="read" selected={book.shelf === this.value}
-                    onClick={(value = this.value) => { this.setShelfState(value).bind(this) }}>Read</option>
+                <option key="wantToRead" value="wantToRead" selected={book.shelf === this.value}>Want to Read</option>
+                <option key="read" value="read" selected={book.shelf === this.value}>Read</option>
+                <option key="none" value="none" selected={book.shelf === this.value}>None</option>
             </select>
         )
     }
