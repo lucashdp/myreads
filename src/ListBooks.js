@@ -1,28 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ChangeShelf from './ChangeShelf'
 
 class ListBooks extends React.Component {
     static propTypes = {
-        books: PropTypes.array.isRequired
+        books: PropTypes.array.isRequired,
+        onUpdateBook: PropTypes.func.isRequired
     }
 
-    serializeAuthors(authors = ['','']) {
+    serializeAuthors(authors = ['', '']) {
 
-        if(authors.length === 1)
+        if (authors.length === 1)
             return authors
 
         let serializedAuthors = '';
 
-        for(const author of authors)
-        {
-            serializedAuthors += author+', '
+        for (const author of authors) {
+            serializedAuthors += author + ', '
         }
 
-        return serializedAuthors.substring(0, serializedAuthors.length - 2)+'.';
+        return serializedAuthors.substring(0, serializedAuthors.length - 2) + '.';
     }
 
     render() {
-        const { books } = this.props
+        const { books, onUpdateBook } = this.props
         let booksCurrently = books.filter((book) => book.shelf === 'currentlyReading')
         let booksWantToRead = books.filter((book) => book.shelf === 'wantToRead')
         let booksRead = books.filter((book) => book.shelf === 'read')
@@ -49,13 +50,10 @@ class ListBooks extends React.Component {
                                                         }}>
                                                     </div>
                                                     <div className="book-shelf-changer">
-                                                        <select>
-                                                            <option value="none" disabled>Move to...</option>
-                                                            <option value="currentlyReading">Currently Reading</option>
-                                                            <option value="wantToRead">Want to Read</option>
-                                                            <option value="read">Read</option>
-                                                            <option value="none">None</option>
-                                                        </select>
+                                                        <ChangeShelf
+                                                            book={book}
+                                                            onUpdateBook={() => onUpdateBook(book)}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="book-title">{book.title}</div>
@@ -81,13 +79,10 @@ class ListBooks extends React.Component {
                                                         }}>
                                                     </div>
                                                     <div className="book-shelf-changer">
-                                                        <select>
-                                                            <option value="none" disabled>Move to...</option>
-                                                            <option value="currentlyReading">Currently Reading</option>
-                                                            <option value="wantToRead">Want to Read</option>
-                                                            <option value="read">Read</option>
-                                                            <option value="none">None</option>
-                                                        </select>
+                                                        <ChangeShelf
+                                                            book={book}
+                                                            onUpdateBook={() => onUpdateBook(book)}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="book-title">{book.title}</div>
@@ -113,13 +108,10 @@ class ListBooks extends React.Component {
                                                         }}>
                                                     </div>
                                                     <div className="book-shelf-changer">
-                                                        <select>
-                                                            <option value="none" disabled>Move to...</option>
-                                                            <option value="currentlyReading">Currently Reading</option>
-                                                            <option value="wantToRead">Want to Read</option>
-                                                            <option value="read">Read</option>
-                                                            <option value="none">None</option>
-                                                        </select>
+                                                        <ChangeShelf
+                                                            book={book}
+                                                            onUpdateBook={() => onUpdateBook(book)}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="book-title">{book.title}</div>
