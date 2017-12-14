@@ -10,18 +10,18 @@ class ChangeShelf extends React.Component {
 
     render() {
         const { book, onUpdateBook } = this.props
-
+        
         return (
             <select value={book.shelf} 
             onChange={(e) => { 
                 book.shelf = e.target.value
                 onUpdateBook(book)
             }}>
-                <option key="none" value="none" disabled>Move to...</option>
-                <option key="currentlyReading" value="currentlyReading" selected={book.shelf === this.value}>Currently Reading</option>
-                <option key="wantToRead" value="wantToRead" selected={book.shelf === this.value}>Want to Read</option>
-                <option key="read" value="read" selected={book.shelf === this.value}>Read</option>
-                <option key="delete" value="delete" selected={book.shelf === this.value}>Delete</option>
+                <option key="block" value="block" disabled>Move to...</option>
+                <option key="currentlyReading" value="currentlyReading">Currently Reading</option>
+                <option key="wantToRead" value="wantToRead">Want to Read</option>
+                <option key="read" value="read">Read</option>
+                <option key="none" value="none" selected>None</option>
             </select>
         )
     }

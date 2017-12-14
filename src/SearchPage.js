@@ -2,36 +2,67 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Book from './Book'
-import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import * as BooksAPI from './BooksAPI'
+import debounce from 'throttle-debounce/debounce';
 
 class SearchPage extends React.Component {
     static propTypes = {
-        books: PropTypes.array.isRequired,
-        onUpdateBook: PropTypes.func.isRequired
+        onUpdateBook: PropTypes.func.isRequired,
+        getBooks: PropTypes.func.isRequired
     }
 
     state = {
-        query: ''
+        query: '',
+        books: [],
+        loading: false
+    }
+
+    constructor(props){
+		super(props)
+		this.searchBook = debounce(800, this.searchBook)
+	}
+
+    searchBook = (query) => {
+        if (query) {
+            BooksAPI.search(query.trim())
+                .then((books) => {
+                    if (query.trim() !== this.state.query.trim())
+                    {
+                        this.searchBook(this.state.query)
+                    }
+
+                    this.setState(state => ({
+                        books: books.length > 0 ? books.sort(sortBy('title')) : books=[],
+                        loading: false
+                    }))
+                })
+        } else {
+            this.setState(state => ({
+                books: []
+            }))
+        }
     }
 
     updateQuery = (query) => {
-        this.setState({ query: query.trim() })
+        const { loading } = this.state
+        if (query && !loading) {
+            this.setState(state => ({
+                query,
+                loading: true
+            }))
+            this.searchBook(query)
+        } else {
+            this.setState(state => ({
+                query,
+                books: []
+            }))
+        }
     }
 
     render() {
-        const { books, onUpdateBook } = this.props
-        const { query } = this.state
-
-        let showingBooks
-        if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.title))
-        } else {
-            showingBooks = books
-        }
-
-        showingBooks.sort(sortBy('name'))
+        const { onUpdateBook, getBooks } = this.props
+        const { query, books } = this.state
 
         return (
 
@@ -40,6 +71,7 @@ class SearchPage extends React.Component {
                     <Link
                         to='/'
                         className='close-search'
+                        onClick={getBooks}
                     >Close</Link>
                     <div className="search-books-input-wrapper">
                         <input type="text"
@@ -50,7 +82,7 @@ class SearchPage extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {showingBooks.map((book) => (
+                        {books.map((book) => (
                             <li key={book.id}>
                                 <Book
                                     book={book}
