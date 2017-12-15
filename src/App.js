@@ -4,6 +4,9 @@ import './App.css'
 import ListBooks from './ListBooks'
 import SearchPage from './SearchPage'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
+import toastr from 'toastr'
+import 'toastr/build/toastr.css';
+
 
 class BooksApp extends React.Component {
   state = {
@@ -37,6 +40,7 @@ class BooksApp extends React.Component {
           books: books.concat([book]), 
           loading: false
         }))
+        toastr.success('Book updated successfully !')
       })
   }
 
