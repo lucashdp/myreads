@@ -18,22 +18,21 @@ class SearchPage extends React.Component {
         loading: false
     }
 
-    constructor(props){
-		super(props)
-		this.searchBook = debounce(800, this.searchBook)
-	}
+    constructor(props) {
+        super(props)
+        this.searchBook = debounce(800, this.searchBook)
+    }
 
     searchBook = (query) => {
         if (query) {
             BooksAPI.search(query.trim())
                 .then((books) => {
-                    if (query.trim() !== this.state.query.trim())
-                    {
+                    if (query.trim() !== this.state.query.trim()) {
                         this.searchBook(this.state.query)
                     }
 
                     this.setState(state => ({
-                        books: books.length > 0 ? books.sort(sortBy('title')) : books=[],
+                        books: books.length > 0 ? books.sort(sortBy('title')) : books = [],
                         loading: false
                     }))
                 })
@@ -62,10 +61,9 @@ class SearchPage extends React.Component {
 
     render() {
         const { onUpdateBook, getBooks } = this.props
-        const { query, books } = this.state
+        const { query, books, loading } = this.state
 
         return (
-
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link
@@ -92,9 +90,15 @@ class SearchPage extends React.Component {
                         ))}
                     </ol>
                 </div>
+                {loading ? 
+                (<div className="lds-css center" >
+                    <div className="lds-wave"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>) : ""}                
             </div>
         )
     }
 }
+
+
 
 export default SearchPage

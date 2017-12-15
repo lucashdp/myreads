@@ -7,29 +7,35 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    loading: true
   }
 
   componentDidMount() {
-    this.getAllBooks;
-  }
-
-  getAllBooks = () => 
-  {
     BooksAPI.getAll()
     .then(
-    (books) => { this.setState({ books }) }
+    (books) => { this.setState({ books, loading: false }) }
     )
   }
 
+  getAllBooks = () => {
+    this.setState({ loading: true })
+    BooksAPI.getAll()
+      .then(
+      (books) => { this.setState({ books, loading: false }) }
+      )
+  }
+
   updateBook = (book) => {
+    this.setState({ loading: true })
     let { books } = this.state
     books.filter((b) => b.id !== book.id)
 
     BooksAPI.update(book, book.shelf)
       .then(book => {
         this.setState(state => ({
-          books: books.concat([book])
+          books: books.concat([book]), 
+          loading: false
         }))
       })
   }
@@ -49,7 +55,8 @@ class BooksApp extends React.Component {
             <div>
               <ListBooks
                 books={this.state.books}
-                onUpdateBook={this.updateBook} />
+                onUpdateBook={this.updateBook}
+                loading={this.state.loading} />
               <div className="open-search">
                 <Link
                   to='/search'
