@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
 
     constructor(props) {
         super(props)
-        this.searchBook = debounce(800, this.searchBook)
+        this.searchBook = debounce(600, this.searchBook)
     }
 
     searchBook = (query) => {
@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
 
     updateQuery = (query) => {
         const { loading } = this.state
-        if (query && !loading) {
+        if (query) {
             this.setState(state => ({
                 query,
                 loading: true
