@@ -45,8 +45,7 @@ class SearchPage extends React.Component {
     }
 
     updateQuery = (query) => {
-        const { loading } = this.state
-        if (query) {
+        if (query !== undefined && query !== '') {
             this.setState(state => ({
                 query,
                 loading: true
