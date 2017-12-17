@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 import sortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
-import debounce from 'throttle-debounce/debounce';
+import debounce from 'throttle-debounce/debounce'
 
 class SearchPage extends React.Component {
     static propTypes = {
+        books: PropTypes.array.isRequired,
         onUpdateBook: PropTypes.func.isRequired,
         getBooks: PropTypes.func.isRequired
     }
