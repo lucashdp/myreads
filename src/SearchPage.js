@@ -12,14 +12,14 @@ class SearchPage extends React.Component {
         getBooks: PropTypes.func.isRequired
     }
 
-    state = {
-        query: '',
-        books: [],
-        loading: false
-    }
-
     constructor(props) {
-        super(props)
+        super(props)    
+        
+        this.state = {
+            query: '',
+            books: [],
+            loading: false
+        }
         this.searchBook = debounce(600, this.searchBook)
     }
 

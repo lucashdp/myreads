@@ -9,16 +9,21 @@ import 'toastr/build/toastr.css';
 
 
 class BooksApp extends React.Component {
-  state = {
-    books: [],
-    loading: true
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      books: [],
+      loading: true
+    }
   }
 
   componentDidMount() {
     BooksAPI.getAll()
-    .then(
-    (books) => { this.setState({ books, loading: false }) }
-    )
+      .then(
+      (books) => { this.setState({ books, loading: false }) }
+      )
   }
 
   getAllBooks = () => {
@@ -37,7 +42,7 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, book.shelf)
       .then(book => {
         this.setState(state => ({
-          books: books.concat([book]), 
+          books: books.concat([book]),
           loading: false
         }))
         toastr.success('Book updated successfully !')
