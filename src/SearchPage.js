@@ -30,6 +30,17 @@ class SearchPage extends React.Component {
                 .then((books) => {
                     if (query.trim() !== this.state.query.trim()) {
                         this.searchBook(this.state.query)
+                    }                    
+
+                    if(books !== undefined && books.length > 0)
+                    {
+                        books.map((book) => 
+                        (
+                            this.props.books.filter((bp) => bp.id === book.id).map((bk) => 
+                            (
+                                book.shelf = bk.shelf
+                            ))
+                        ));
                     }
 
                     this.setState(state => ({
