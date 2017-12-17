@@ -5,15 +5,16 @@ import Book from './Book'
 class BookShelf extends React.Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
-        onUpdateBook: PropTypes.func.isRequired
+        onUpdateBook: PropTypes.func.isRequired,
+        shelf: PropTypes.string.isRequired
     }
 
     render() {
-        const { books, onUpdateBook } = this.props
+        const { books, onUpdateBook, shelf } = this.props
 
         return (
             <div className="bookshelf">
-            <h2 className="bookshelf-title">Currently Reading</h2>
+            <h2 className="bookshelf-title">{shelf}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     {books.map((book) => (

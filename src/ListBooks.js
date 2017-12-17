@@ -27,14 +27,17 @@ class ListBooks extends React.Component {
                             <BookShelf
                                 books={booksCurrently}
                                 onUpdateBook={onUpdateBook}
+                                shelf='Currently Reading'
                             />
                             <BookShelf
                                 books={booksWantToRead}
                                 onUpdateBook={onUpdateBook}
+                                shelf='Wanto to Read'
                             />
                             <BookShelf
                                 books={booksRead}
                                 onUpdateBook={onUpdateBook}
+                                shelf='Read'
                             />
                         </div>
                     </div>
