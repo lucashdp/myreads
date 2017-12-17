@@ -2,6 +2,16 @@
 
 - This is my first project using React. This projet its in a course of Udacity React Nanodegree. Its a bookshelf app, where you will categorize yours books on the shelfs.
 
+## Aplication
+
+### Initial Page
+- On the initial page you can change the shelf books.
+(https://raw.githubusercontent.com/lucashdp/myreads/master/initialPage.jpg)
+
+### Search Page
+- On the search page you can add new books to the shelfs.
+(https://raw.githubusercontent.com/lucashdp/myreads/master/search.JPG)
+
 ## Pre-Requisites
 
 - NodeJS is a pre requisite. You will use the Node Package Manager (npm).
