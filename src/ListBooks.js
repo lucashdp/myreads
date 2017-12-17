@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Book from './Book'
+import BookShelf from './BookShelf'
 
 class ListBooks extends React.Component {
     static propTypes = {
@@ -20,57 +20,24 @@ class ListBooks extends React.Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                
+
                 {!loading ? (
-                <div className="list-books-content">
-                    <div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {booksCurrently.map((book) => (
-                                        <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onUpdateBook={onUpdateBook}
-                                            />
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {booksWantToRead.map((book) => (
-                                        <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onUpdateBook={onUpdateBook}
-                                            />
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {booksRead.map((book) => (
-                                        <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onUpdateBook={onUpdateBook}
-                                            />
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
+                    <div className="list-books-content">
+                        <div>
+                            <BookShelf
+                                books={booksCurrently}
+                                onUpdateBook={onUpdateBook}
+                            />
+                            <BookShelf
+                                books={booksWantToRead}
+                                onUpdateBook={onUpdateBook}
+                            />
+                            <BookShelf
+                                books={booksRead}
+                                onUpdateBook={onUpdateBook}
+                            />
                         </div>
                     </div>
-                </div>
                 ) : ""}
                 {loading ?
                     (<div className="lds-css center" >
