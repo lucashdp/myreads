@@ -6,11 +6,11 @@
 
 ### Initial Page
 - On the initial page you can change the shelf books.
-(https://raw.githubusercontent.com/lucashdp/myreads/master/initialPage.jpg)
+![Initial Page](https://raw.githubusercontent.com/lucashdp/myreads/master/initialPage.jpg)
 
 ### Search Page
 - On the search page you can add new books to the shelfs.
-(https://raw.githubusercontent.com/lucashdp/myreads/master/search.JPG)
+![Search Page](https://raw.githubusercontent.com/lucashdp/myreads/master/search.JPG)
 
 ## Pre-Requisites
 
